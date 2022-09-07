@@ -6,32 +6,28 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class SimpleLinkedList<E> implements LinkedList<E> {
-    transient Node<E> last;
-    transient Node<E> first;
-    transient int size = 0;
+    private Node<E> first;
+    private Node<E> last;
+    private int size = 0;
     private int modCount;
-    private int expectedModCount;
     public SimpleLinkedList() {
-        first = new Node<E>(null, null, last);
-        last = new Node<E>(first, null, null);
     }
 
     private static class Node<E> {
         E item;
         Node<E> next;
-        Node<E> prev;
-        Node(Node<E> prev, E element, Node<E> next) {
+
+        Node(E element, Node<E> next) {
             this.item = element;
             this.next = next;
-            this.prev = prev;
         }
     }
 
     @Override
     public void add(E value) {
         Node<E> l = last;
-        last = new Node<>(l, value, null);
-        if (l.item == null) {
+        last = new Node<>(value, null);
+        if (l == null) {
             first = last;
         } else {
             l.next = last;
@@ -52,15 +48,16 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
 
     @Override
     public Iterator<E> iterator() {
-        expectedModCount = modCount;
+
         return new Iterator<E>() {
+            private int expectedModCount = modCount;
             private Node<E> nextNode = first;
             @Override
             public boolean hasNext() {
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return first.item != null && nextNode != null;
+                return nextNode != null;
             }
             @Override
             public E next() {

@@ -9,7 +9,10 @@ public class SimpleQueue<T> {
     private int cIn = 0;
 
     public T poll() {
-        if (cReturn == 0 && cIn != 0) {
+        if (cReturn == 0 && cIn == 0) {
+            throw new NoSuchElementException();
+        }
+        if (cReturn == 0) {
             while (cIn != 0) {
                 out.push(in.pop());
                 cIn--;

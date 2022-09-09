@@ -49,9 +49,32 @@ class ListUtilsTest {
     }
 
     @Test
-    void whenRemoveIf() {
+    void whenRemoveIfWithPredicateMore1() {
         Predicate<Integer> filter = s -> s > 1;
         ListUtils.removeIf(input, filter);
         assertThat(input).hasSize(1).containsOnly(1);
+    }
+
+    @Test
+    void whenRemoveIfWithPredicateLess3() {
+        Predicate<Integer> filter = s -> s < 3;
+        ListUtils.removeIf(input, filter);
+        assertThat(input).hasSize(1).containsOnly(3);
+    }
+
+    @Test
+    void whenRemoveIfWithPredicateLess5() {
+        Predicate<Integer> filter = s -> s < 3;
+        List<Integer> test = new ArrayList<>(Arrays.asList(1, 1, 6, 2, 7));
+        ListUtils.removeIf(test, filter);
+        assertThat(test).hasSize(2).containsSequence(6, 7);
+    }
+
+    @Test
+    void whenRemoveAllForMany() {
+        List<Integer> rem = List.of(1, 2);
+        List<Integer> test = new ArrayList<>(Arrays.asList(1, 1, 6, 2, 1, 7));
+        ListUtils.removeAll(test, rem);
+        assertThat(test).hasSize(2).containsSequence(6, 7);
     }
 }

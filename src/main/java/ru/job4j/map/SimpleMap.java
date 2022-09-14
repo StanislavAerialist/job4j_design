@@ -56,8 +56,10 @@ public class SimpleMap<K, V> implements Map<K, V> {
     public V get(K key) {
         int i = key != null ? indexFor(hash(key.hashCode())) : 0;
         V rsl = null;
-        if (table[i] != null) {
+        if (table[i] != null && (table[i].key == null || key == null)) {
             rsl = Objects.equals(table[i].key, key) ? table[i].value : null;
+        } else if (table[i] != null) {
+            rsl = (table[i].key.hashCode() == key.hashCode()) && Objects.equals(table[i].key, key) ? table[i].value : null;
         }
         return rsl;
     }
@@ -65,20 +67,19 @@ public class SimpleMap<K, V> implements Map<K, V> {
     @Override
     public boolean remove(K key) {
         int i = key != null ? indexFor(hash(key.hashCode())) : 0;
-        boolean rsl = table[i] != null;
-        if (key == null) {
-            if (rsl) {
+        boolean rsl = false;
+        if (table[i] != null && (table[i].key == null || key == null)) {
+            if (Objects.equals(table[i].key, key)) {
                 table[i] = null;
                 count--;
                 modCount--;
+                rsl = true;
             }
-        } else {
-            rsl = table[i] != null && table[i].key.equals(key);
-        }
-        if (rsl) {
+        } else if (table[i] != null && (table[i].key.hashCode() == key.hashCode()) && table[i].key.equals(key)) {
             table[i] = null;
             count--;
             modCount--;
+            rsl = true;
         }
         return rsl;
     }

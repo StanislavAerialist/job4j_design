@@ -11,8 +11,8 @@ public class LogFilter {
         List<String> rsl = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
             in.lines()
-                    .filter(line -> line.contains("HTTP/1.1\" 404"))
-                    .forEach(rsl::add);
+                .filter(line -> line.contains("HTTP/1.1\" 404"))
+                .forEach(rsl::add);
         } catch (IOException e) {
             e.printStackTrace();
         }

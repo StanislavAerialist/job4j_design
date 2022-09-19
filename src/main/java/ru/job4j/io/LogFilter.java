@@ -2,6 +2,7 @@ package ru.job4j.io;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class LogFilter {
             in.lines()
                     .filter(line -> line.contains("HTTP/1.1\" 404"))
                     .forEach(rsl::add);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return rsl;

@@ -9,7 +9,7 @@ public class LogFilter {
         List<String> rsl = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
             in.lines()
-                .filter(line -> line.contains("HTTP/1.1\" 404"))
+                .filter(line -> line.contains(" 404 "))
                 .forEach(rsl::add);
         } catch (IOException e) {
             e.printStackTrace();
@@ -32,6 +32,8 @@ public class LogFilter {
         LogFilter logFilter = new LogFilter();
         List<String> log = logFilter.filter("log.txt");
         save(log, "404.txt");
-        System.out.println(log);
+        for (String s : log) {
+            System.out.println(s);
+        }
     }
 }

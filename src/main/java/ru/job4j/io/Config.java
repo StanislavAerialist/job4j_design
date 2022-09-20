@@ -23,10 +23,11 @@ public class Config {
             read.lines()
                     .filter(line -> !line.startsWith("#") && !line.isEmpty())
                     .forEach(line -> {
-                        if (line.startsWith("=") || !line.contains("=") || line.split("=", 2)[1].isEmpty()) {
-                            throw new IllegalArgumentException("Incorrect line");
+                        String[] s = line.split("=", 2);
+                        if (line.startsWith("=") || !line.contains("=") || s[1].isEmpty()) {
+                            throw new IllegalArgumentException(String.format("Incorrect line %s", line));
                         }
-                        values.put(line.split("=", 2)[0], line.split("=", 2)[1]);
+                        values.put(s[0], s[1]);
                     });
         } catch (IOException e) {
             e.printStackTrace();
@@ -35,7 +36,7 @@ public class Config {
 
     public String value(String key) {
         if (!values.containsKey(key)) {
-            throw new NoSuchElementException("Invalid key");
+            throw new NoSuchElementException(String.format("Invalid key: %s", key));
         }
         return values.get(key);
     }

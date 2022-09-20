@@ -26,21 +26,27 @@ class ConfigTest {
     void whenStartWithEqual() {
         String path = "./data/start_with_equal.properties";
         Config config = new Config(path);
-        assertThatThrownBy(config::load).isInstanceOf(IllegalArgumentException.class);
+        String line = "=blabla=bla";
+        assertThatThrownBy(config::load).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Incorrect line %s", line);
     }
 
     @Test
     void whenValueIsEmpty() {
         String path = "./data/value_empty.properties";
         Config config = new Config(path);
-        assertThatThrownBy(config::load).isInstanceOf(IllegalArgumentException.class);
+        String line = "key=";
+        assertThatThrownBy(config::load).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Incorrect line %s", line);
     }
 
     @Test
     void whenWithoutEqual() {
         String path = "./data/without_equal.properties";
         Config config = new Config(path);
-        assertThatThrownBy(config::load).isInstanceOf(IllegalArgumentException.class);
+        String line = "keyvalue";
+        assertThatThrownBy(config::load).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Incorrect line %s", line);
     }
 
     @Test
@@ -55,6 +61,8 @@ class ConfigTest {
     void whenOnlyEqual() {
         String path = "./data/only_equal.properties";
         Config config = new Config(path);
-        assertThatThrownBy(config::load).isInstanceOf(IllegalArgumentException.class);
+        String line = "=";
+        assertThatThrownBy(config::load).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Incorrect line %s", line);
     }
 }

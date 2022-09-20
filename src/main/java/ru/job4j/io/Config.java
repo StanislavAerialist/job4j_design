@@ -24,7 +24,7 @@ public class Config {
                     .filter(line -> !line.startsWith("#") && !line.isEmpty())
                     .forEach(line -> {
                         String[] s = line.split("=", 2);
-                        if (line.startsWith("=") || !line.contains("=") || s[1].isEmpty()) {
+                        if (s.length != 2 || s[0].isEmpty() || s[1].isEmpty()) {
                             throw new IllegalArgumentException(String.format("Incorrect line %s", line));
                         }
                         values.put(s[0], s[1]);

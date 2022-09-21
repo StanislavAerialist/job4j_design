@@ -51,6 +51,9 @@ public class Zip {
     }
 
     public static void main(String[] args) throws IOException {
+        if (args.length != 3) {
+            throw new IllegalArgumentException(String.format("args must contain -d directory, -e - exclude, -o - output"));
+        }
         Zip zip = new Zip();
         ArgsName argsName = ArgsName.of(args);
         zip.validate(argsName);

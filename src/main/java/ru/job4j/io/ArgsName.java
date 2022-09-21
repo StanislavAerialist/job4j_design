@@ -21,15 +21,17 @@ public class ArgsName {
         }
         Arrays.stream(args)
                 .forEach(line -> {
-                    String[] s = line.split("=", 2);
-                    if (s.length != 2 || s[0].isEmpty() || !s[0].startsWith("-") || s[1].isEmpty()) {
+                    if (!line.startsWith("-") || !line.contains("=")) {
                         throw new IllegalArgumentException(String.format("Incorrect line %s", line));
                     }
-                    String[] s2 = s[0].split("-");
-                    if (s2.length != 2  || s2[1].isEmpty()) {
+                    String[] s = line.split("=", 2);
+                    if (s.length != 2 || s[0].isEmpty() || s[1].isEmpty()) {
+                        throw new IllegalArgumentException(String.format("Incorrect line %s", line));
+                    }
+                    if (s[0].substring(1).isEmpty()) {
                         throw new IllegalArgumentException(String.format("Incorrect line %s", s[0]));
                     }
-                    values.put(s[0].split("-")[1], s[1]);
+                    values.put(s[0].substring(1), s[1]);
                 });
     }
 

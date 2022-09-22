@@ -15,7 +15,7 @@ public class CSVReader {
         validate(argsName);
         String output = argsName.get("out");
         try (Scanner scanner = new Scanner(new FileInputStream(argsName.get("path")));
-        PrintStream out = "sdtout".equals(output) ? new PrintStream(System.out) : new PrintStream(new FileOutputStream(output))) {
+        PrintStream out = "stdout".equals(output) ? new PrintStream(System.out) : new PrintStream(new FileOutputStream(output))) {
             scanner.useDelimiter(System.lineSeparator());
             List<String> filters = Arrays.stream(argsName.get("filter").split(",")).toList();
             List<String> columns = Arrays.stream(scanner.next().split(argsName.get("delimiter"))).toList();
@@ -48,7 +48,7 @@ public class CSVReader {
         if (!Files.exists(in) || !args.get("path").endsWith(".csv")) {
             throw new IllegalArgumentException(String.format("Invalid input parameter: %s", in));
         }
-        if (!args.get("delimiter").equals(";")) {
+        if (!";".equals(args.get("delimiter"))) {
             throw new IllegalArgumentException(String.format("Delimiter must be ; : %s", args.get("delimiter")));
         }
         Path out = Paths.get(args.get("out"));

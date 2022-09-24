@@ -15,5 +15,23 @@ public class Candidate {
         this.relatives = relatives;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public boolean isServeInArmy() {
+        return serveInArmy;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public String[] getRelatives() {
+        return relatives;
+    }
 }

@@ -1,33 +1,32 @@
 package ru.job4j.serialization.json;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        final Person person = new Person(false, 30, new Contact("11-111"),
-                new String[] {"Worker", "Married"});
+        JSONObject jsonAddress = new JSONObject("{\"home\":\"Moscow\"}");
+
+        List<String> list = new ArrayList<>();
+        list.add("Father");
+        list.add("Mother");
+        JSONArray jsonRelatives = new JSONArray(list);
 
         final Candidate candidate = new Candidate("Ivan", true, 25, new Address("Moscow"),
-                new String[] {"Father", "Mother"});
+                new String[]{"Father", "Mother"});
 
-        /* Преобразуем объект person в json-строку. */
-        final Gson gson = new GsonBuilder().create();
-        System.out.println(gson.toJson(candidate));
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("name", candidate.getName());
+        jsonObject.put("serveInArmy", candidate.isServeInArmy());
+        jsonObject.put("age", candidate.getAge());
+        jsonObject.put("address", jsonAddress);
+        jsonObject.put("relatives", jsonRelatives);
 
-        /* Модифицируем json-строку */
-        final String personJson =
-                "{"
-                        + "\"sex\":false,"
-                        + "\"age\":35,"
-                        + "\"contact\":"
-                        + "{"
-                        + "\"phone\":\"+7(924)111-111-11-11\""
-                        + "},"
-                        + "\"statuses\":"
-                        + "[\"Student\",\"Free\"]"
-                        + "}";
-        final Person personMod = gson.fromJson(personJson, Person.class);
-        System.out.println(personMod);
+        System.out.println(jsonObject.toString());
+
+        System.out.println(new JSONObject(candidate).toString());
     }
 }

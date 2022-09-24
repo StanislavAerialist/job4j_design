@@ -6,6 +6,10 @@ public class Address {
         this.home = home;
     }
 
+    public String getHome() {
+        return home;
+    }
+
     @Override
     public String toString() {
         return "Address{"

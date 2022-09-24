@@ -1,7 +1,5 @@
 package ru.job4j.io.serialization.xml;
 
-import ru.job4j.serialization.json.Address;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;

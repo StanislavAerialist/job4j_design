@@ -18,18 +18,18 @@ insert into furniture(name, weight, colour_id) values ('Table', 12, 1);
 insert into furniture(name, weight, colour_id) values ('Chair', 3, 2);
 insert into furniture(name, weight, colour_id) values ('Dresser', 10, 3);
 
-select pp.name as "Íàèìåíîâàíèå èçäåëèÿ", p.name as "Íàçâàíèå öâåòà"
+select pp.name as "ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¸Ð·Ð´ÐµÐ»Ð¸Ñ", p.name as "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ñ†Ð²ÐµÑ‚Ð°"
 from colour as p
 join furniture as pp
 on pp.colour_id = p.id;
 
-select pp.name as "Íàèìåíîâàíèå èçäåëèÿ", pp.weight as "Âåñ èçäåëèÿ", p.name as "Íàçâàíèå öâåòà"
+select pp.name as "ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¸Ð·Ð´ÐµÐ»Ð¸Ñ", pp.weight as "Ð’ÐµÑ Ð¸Ð·Ð´ÐµÐ»Ð¸Ñ", p.name as "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ñ†Ð²ÐµÑ‚Ð°"
 from colour as p
 join furniture as pp
 on pp.colour_id = p.id
 where pp.weight > 5 and pp.weight < 12;
 
-select pp.weight as "Âåñ èçäåëèÿ", p.name as "Íàçâàíèå öâåòà"
+select pp.weight as "Ð’ÐµÑ Ð¸Ð·Ð´ÐµÐ»Ð¸Ñ", p.name as "ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ñ†Ð²ÐµÑ‚Ð°"
 from colour as p
 join furniture as pp
 on pp.colour_id = p.id

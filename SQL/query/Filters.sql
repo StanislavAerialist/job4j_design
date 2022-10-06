@@ -11,59 +11,59 @@ create table product(
 	price money
 );
 
-insert into type(name) values ('СЫР'), ('МОРОЖЕНОЕ'), ('МОЛОКО');
-insert into product(name, type_id, expired_date, price) values ('Сыр Косичка', 1, date '01.06.2022', 120.00);
-insert into product(name, type_id, expired_date, price) values ('Сыр Ламбер', 1, date '05.06.2022', 400.00);
-insert into product(name, type_id, expired_date, price) values ('Сыр Дружба', 1, date '03.06.2022', 50.00);
+insert into type(name) values ('РЎР«Р '), ('РњРћР РћР–Р•РќРћР•'), ('РњРћР›РћРљРћ');
+insert into product(name, type_id, expired_date, price) values ('РЎС‹СЂ РљРѕСЃРёС‡РєР°', 1, date '01.06.2022', 120.00);
+insert into product(name, type_id, expired_date, price) values ('РЎС‹СЂ Р›Р°РјР±РµСЂ', 1, date '05.06.2022', 400.00);
+insert into product(name, type_id, expired_date, price) values ('РЎС‹СЂ Р”СЂСѓР¶Р±Р°', 1, date '03.06.2022', 50.00);
 
-insert into product(name, type_id, expired_date, price) values ('Мороженое Пломбир 66 копеек', 2, date '03.06.2022', 150.00);
-insert into product(name, type_id, expired_date, price) values ('Эскимо Ижевское', 2, date '04.06.2022', 55.00);
-insert into product(name, type_id, expired_date, price) values ('Мороженое Movenpick', 2, date '06.06.2022', 650.00);
+insert into product(name, type_id, expired_date, price) values ('РњРѕСЂРѕР¶РµРЅРѕРµ РџР»РѕРјР±РёСЂ 66 РєРѕРїРµРµРє', 2, date '03.06.2022', 150.00);
+insert into product(name, type_id, expired_date, price) values ('Р­СЃРєРёРјРѕ РР¶РµРІСЃРєРѕРµ', 2, date '04.06.2022', 55.00);
+insert into product(name, type_id, expired_date, price) values ('РњРѕСЂРѕР¶РµРЅРѕРµ Movenpick', 2, date '06.06.2022', 650.00);
 
-insert into product(name, type_id, expired_date, price) values ('Молоко Ирбитское', 3, date '06.06.2022', 45.00);
-insert into product(name, type_id, expired_date, price) values ('Молоко Талицкое', 3, date '06.06.2022', 35.00);
-insert into product(name, type_id, expired_date, price) values ('Молоко Сысертское', 3, date '06.06.2022', 55.00);
+insert into product(name, type_id, expired_date, price) values ('РњРѕР»РѕРєРѕ РСЂР±РёС‚СЃРєРѕРµ', 3, date '06.06.2022', 45.00);
+insert into product(name, type_id, expired_date, price) values ('РњРѕР»РѕРєРѕ РўР°Р»РёС†РєРѕРµ', 3, date '06.06.2022', 35.00);
+insert into product(name, type_id, expired_date, price) values ('РњРѕР»РѕРєРѕ РЎС‹СЃРµСЂС‚СЃРєРѕРµ', 3, date '06.06.2022', 55.00);
 
-select t.name as "Название типа", p.name as "Название продукта"
+select t.name as "РќР°Р·РІР°РЅРёРµ С‚РёРїР°", p.name as "РќР°Р·РІР°РЅРёРµ РїСЂРѕРґСѓРєС‚Р°"
 from type as t
 join product as p
 on p.type_id = t.id
-where t.name like 'СЫР';
+where t.name like 'РЎР«Р ';
 
-select t.name as "Название типа", p.name as "Название продукта"
+select t.name as "РќР°Р·РІР°РЅРёРµ С‚РёРїР°", p.name as "РќР°Р·РІР°РЅРёРµ РїСЂРѕРґСѓРєС‚Р°"
 from type as t
 join product as p
 on p.type_id = t.id
-where p.name like '%Мороженое%';
+where p.name like '%РњРѕСЂРѕР¶РµРЅРѕРµ%';
 
 select * from product where expired_date < date '05.06.2022';
 
-select t.name as "Название типа", max(p.price) as "Максимальная стоимость"
+select t.name as "РќР°Р·РІР°РЅРёРµ С‚РёРїР°", max(p.price) as "РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ СЃС‚РѕРёРјРѕСЃС‚СЊ"
 from type as t
 join product as p
 on p.type_id = t.id
 group by t.name;
 
-select t.name as "Название типа", count(p.name) as "Количество"
+select t.name as "РќР°Р·РІР°РЅРёРµ С‚РёРїР°", count(p.name) as "РљРѕР»РёС‡РµСЃС‚РІРѕ"
 from product p
 join type t
 on p.type_id = t.id
 group by t.name;
 
-select t.name as "Название типа", p.name as "Название продукта"
+select t.name as "РќР°Р·РІР°РЅРёРµ С‚РёРїР°", p.name as "РќР°Р·РІР°РЅРёРµ РїСЂРѕРґСѓРєС‚Р°"
 from type as t
 join product as p
 on p.type_id = t.id
-where t.name like 'СЫР' or t.name like 'МОЛОКО';
+where t.name like 'РЎР«Р ' or t.name like 'РњРћР›РћРљРћ';
 
-select t.name as "Название типа", count(p.name) as "Количество"
+select t.name as "РќР°Р·РІР°РЅРёРµ С‚РёРїР°", count(p.name) as "РљРѕР»РёС‡РµСЃС‚РІРѕ"
 from product p
 join type t
 on p.type_id = t.id
 group by t.name
 having count(p.name) < 10;
 
-select p.name as "Название продукта", t.name as "Название типа"
+select p.name as "РќР°Р·РІР°РЅРёРµ РїСЂРѕРґСѓРєС‚Р°", t.name as "РќР°Р·РІР°РЅРёРµ С‚РёРїР°"
 from product p
 join type t
 on p.type_id = t.id;

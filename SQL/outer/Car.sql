@@ -49,5 +49,5 @@ where c.id is null;
 select t.name as "Тип трансмиссии", c.name "Название авто"
 from car_transmissions as t
 left outer join cars as c
-on c.engine_id = t.id
+on c.transmissions_id = t.id
 where c.id is null;

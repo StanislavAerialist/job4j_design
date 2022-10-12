@@ -25,7 +25,7 @@ as $$
     END
 $$;
 
-call delere_data(1);
+call delete_data(1);
 
 call insert_data('product_1', 'producer_1', 0, 32);
 

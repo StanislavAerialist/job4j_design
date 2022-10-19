@@ -10,7 +10,7 @@ public class TableEditor implements AutoCloseable {
 
     private Connection connection;
 
-    private static Properties properties;
+    private Properties properties;
 
     public TableEditor(Properties properties) throws SQLException, ClassNotFoundException {
         this.properties = properties;

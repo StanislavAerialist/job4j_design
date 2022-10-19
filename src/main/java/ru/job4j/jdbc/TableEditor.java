@@ -25,14 +25,6 @@ public class TableEditor implements AutoCloseable {
         connection = DriverManager.getConnection(url, login, password);
     }
 
-    private void classLoader() {
-        try (InputStream in = TableEditor.class.getClassLoader().getResourceAsStream("app.properties")) {
-            properties.load(in);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void calculate(String s) throws SQLException {
         try (Statement statement = connection.createStatement()) {
             statement.execute(s);

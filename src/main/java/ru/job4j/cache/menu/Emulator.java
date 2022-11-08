@@ -5,14 +5,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Emulator {
     private static final int LOAD_CACHE = 1;
     private static final int SHOW_CACHE = 2;
     private static final String DIR_PATH = "Введите путь к папке для кэширования.";
-    private static final String FILE = "Введите \\\\имя_файла для кэширования.";
-    private static final String RESULT = "Введите \\\\имя_файла для просмотра содержимого.";
+    private static final String FILE = "Введите имя_файла для кэширования.";
+    private static final String RESULT = "Введите имя_файла для просмотра содержимого.";
     private static final String EXIT = """ 
                 Доброго дня
                 System shut down...
@@ -38,7 +39,7 @@ public class Emulator {
             if (LOAD_CACHE == userChoice) {
                 System.out.println(FILE);
                 String file = bufferedReader.readLine();
-                if (!Files.exists(Paths.get(String.format("%s%s", dir, file)))) {
+                if (!Files.exists(Path.of(dir, file))) {
                     throw new IllegalArgumentException(String.format("File %s doesn't exist in this directory.", file));
                 }
                 dirFileCache.put(file, dirFileCache.get(file));

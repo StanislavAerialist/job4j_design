@@ -1,5 +1,6 @@
 package ru.job4j.template;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@Ignore
 class SomeGeneratorTest {
 
     @Test

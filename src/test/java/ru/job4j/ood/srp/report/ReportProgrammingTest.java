@@ -21,12 +21,10 @@ class ReportProgrammingTest {
         Report engine = new ReportProgramming(store, parser);
         StringBuilder expect = new StringBuilder()
                 .append("Name;Hired;Fired;Salary;")
-                .append(System.lineSeparator())
                 .append(worker.getName()).append(";")
                 .append(parser.parse(worker.getHired())).append(";")
                 .append(parser.parse(worker.getFired())).append(";")
-                .append(worker.getSalary()).append(";")
-                .append(System.lineSeparator());
+                .append(worker.getSalary()).append(";");
         assertThat(engine.generate(em -> true)).isEqualTo(expect.toString());
     }
 }

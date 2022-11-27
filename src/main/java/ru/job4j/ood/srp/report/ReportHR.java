@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class ReportHR implements Report {
-    private final Store store;
     private static final Comparator<Employee> COMPARATOR = (Emp1, Emp2) -> Double.compare(Emp2.getSalary(), Emp1.getSalary());
+    private final Store store;
     public ReportHR(Store store) {
         this.store = store;
     }

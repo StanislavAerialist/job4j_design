@@ -12,17 +12,16 @@ import java.util.function.Predicate;
 
 public class ReportJSON implements Report {
     private final Store store;
-    private final DateTimeParser<Calendar> dateTimeParser;
+    private final Gson lib;
 
-    public ReportJSON(Store store, DateTimeParser<Calendar> dateTimeParser) {
+    public ReportJSON(Store store) {
         this.store = store;
-        this.dateTimeParser = dateTimeParser;
+        this.lib = new GsonBuilder().create();
     }
 
     @Override
     public String generate(Predicate<Employee> filter) {
         List<Employee> sorted = store.findBy(filter);
-        Gson lib = new GsonBuilder().create();
         return lib.toJson(sorted);
     }
 }

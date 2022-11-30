@@ -16,9 +16,8 @@ class ReportJSONTest {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
-        DateTimeParser<Calendar> parser = new ReportDateTimeParser();
         store.add(worker);
-        Report engine = new ReportJSON(store, parser);
+        Report engine = new ReportJSON(store);
         StringBuilder expect = new StringBuilder();
         expect.append("[")
                 .append("{")

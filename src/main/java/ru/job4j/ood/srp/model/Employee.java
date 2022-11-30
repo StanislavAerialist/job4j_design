@@ -7,16 +7,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Calendar;
 import java.util.Objects;
 
-@XmlRootElement(name = "Employee")
-@XmlAccessorType(XmlAccessType.FIELD)
+
 public class Employee {
-    @XmlAttribute
+
     private String name;
-    @XmlAttribute
+
     private Calendar hired;
-    @XmlAttribute
+
     private Calendar fired;
-    @XmlAttribute
+
     private double salary;
 
     public Employee() {

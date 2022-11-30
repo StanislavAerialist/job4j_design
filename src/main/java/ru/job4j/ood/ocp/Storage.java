@@ -1,18 +1,11 @@
 package ru.job4j.ood.ocp;
-
-import java.util.List;
-
+import ru.job4j.ood.srp.model.Employee;
+import java.util.ArrayList;
 public class Storage {
-
-    private List<Integer> store;
-    private final int count = 15;
-
-    public Storage(List store) {
-        this.store = store;
+    private ArrayList<Employee> store;
+    public Storage() {
     }
-
-    public List<Integer> save(int i) {
-        store.add(i + count);
-        return store;
+    public void save(Employee e) {
+        store.add(e);
     }
 }

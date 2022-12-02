@@ -10,7 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import static org.assertj.core.api.Assertions.*;
-@Disabled
 class ReportXMLTest {
     @Test
     public void whenXMLReport() throws JAXBException {

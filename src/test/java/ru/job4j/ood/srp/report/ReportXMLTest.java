@@ -33,6 +33,6 @@ class ReportXMLTest {
                 .append(String.format("        %s%n", "</employee>"))
                 .append(String.format("    %s%n", "</employees>"))
                 .append(String.format("%s%n", "</Employees>"));
-        assertThat(engine.generate(em -> true)).isEqualTo(expect.toString());
+        assertThat(engine.generate(em -> true)).isEqualTo(expect.toString().replaceAll("\r\n", "\n"));
     }
 }

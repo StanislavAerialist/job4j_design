@@ -12,6 +12,8 @@ public class SimpleArrayList<T> implements SimpleList<T> {
     public SimpleArrayList(int capacity) {
         this.container = (T[]) new Object[capacity];
     }
+    public SimpleArrayList() {
+    }
 
     @Override
     public void add(T value) {

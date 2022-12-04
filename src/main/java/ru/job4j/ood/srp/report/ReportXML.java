@@ -25,11 +25,6 @@ public class ReportXML implements Report {
     @Override
     public String generate(Predicate<Employee> filter) {
         String xml;
-        try {
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
         try (StringWriter writer = new StringWriter()) {
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             marshaller.marshal(new Employees(store.findBy(filter)), writer);

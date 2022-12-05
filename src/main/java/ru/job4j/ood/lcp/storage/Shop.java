@@ -15,8 +15,8 @@ public class Shop extends AbstractStore {
         if (expirationPercent > WAREHOUSE && expirationPercent < TRASH) {
             if (expirationPercent > DISCOUNT) {
                 discount(food);
-                rsl = true;
             }
+            rsl = true;
         }
         return rsl;
     }

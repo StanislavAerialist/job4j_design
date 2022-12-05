@@ -1,15 +1,12 @@
 package ru.job4j.ood.lcp.storage;
 
-import java.util.Calendar;
+import static ru.job4j.ood.lcp.storage.Shop.TRASH;
 
 public class Trash extends AbstractStore {
-    private static final double TRASH = 100;
+    private final ExpirationCalculator calculator = new CalendarExpirationCalculator();
     @Override
-    public boolean isNotExpired(Food food) {
-        long start = food.getCreateDate().getTimeInMillis();
-        long end = food.getExpiryDate().getTimeInMillis();
-        long now = Calendar.getInstance().getTimeInMillis();
-        double expirationPercent = ((now - start) * 100.0) / (end - start);
+    protected boolean isNotExpired(Food food) {
+        double expirationPercent = calculator.calculateInPercent(food.getCreateDate(), food.getExpiryDate());
         return expirationPercent >= TRASH;
     }
 }

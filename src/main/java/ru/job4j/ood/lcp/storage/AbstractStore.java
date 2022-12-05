@@ -19,5 +19,5 @@ public abstract class AbstractStore implements Store {
         return new ArrayList<Food>(store);
     }
 
-    abstract boolean isNotExpired(Food food);
+    protected abstract boolean isNotExpired(Food food);
 }

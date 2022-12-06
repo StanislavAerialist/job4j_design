@@ -13,13 +13,17 @@ class ControlQualityTest {
 
     @Test
     public void whenAddAllTypeOfFoods() {
-    Store warehouse = new Warehouse();
-    Store shop = new Shop();
-    Store trash = new Trash();
+    Store warehouse = new Warehouse(new CalendarExpirationCalculator());
+    Store shop = new Shop(new CalendarExpirationCalculator());
+    Store trash = new Trash(new CalendarExpirationCalculator());
     List<Store> stores = new ArrayList<>(List.of(warehouse, shop, trash));
     ControlQuality cq = new ControlQuality(stores);
-    Calendar expiryDate = new GregorianCalendar(2023, 12, 2);
-    Calendar createDate = new GregorianCalendar(2022, 11, 2);
+    Calendar expiryDate = Calendar.getInstance();
+    Calendar createDate = Calendar.getInstance();
+        expiryDate.set(expiryDate.get(Calendar.YEAR), expiryDate.get(Calendar.MONTH),
+                expiryDate.get(Calendar.DAY_OF_MONTH) + 10);
+        createDate.set(createDate.get(Calendar.YEAR), createDate.get(Calendar.MONTH),
+                createDate.get(Calendar.DAY_OF_MONTH) - 1);
     Food food1 = new Food("warehouse", expiryDate, createDate, 100, 0.1);
         expiryDate = Calendar.getInstance();
         createDate = Calendar.getInstance();

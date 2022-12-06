@@ -17,7 +17,7 @@ class TrashTest {
         createDate.set(createDate.get(Calendar.YEAR), createDate.get(Calendar.MONTH),
                 createDate.get(Calendar.DAY_OF_MONTH) - 10);
         Food food = new Food("trash", expiryDate, createDate, 100, 0.1);
-        Store trash = new Trash();
+        Store trash = new Trash(new CalendarExpirationCalculator());
         trash.add(food);
         List<Food> foods = trash.getAll();
         assertThat(foods.get(0).getName()).isEqualTo("trash");

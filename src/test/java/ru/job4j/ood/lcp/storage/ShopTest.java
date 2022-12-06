@@ -18,7 +18,7 @@ class ShopTest {
         createDate.set(createDate.get(Calendar.YEAR), createDate.get(Calendar.MONTH),
                 createDate.get(Calendar.DAY_OF_MONTH) - 10);
         Food food = new Food("foodWithD", expiryDate, createDate, 100, 0.1);
-        Store shop = new Shop();
+        Store shop = new Shop(new CalendarExpirationCalculator());
         shop.add(food);
         List<Food> foods = shop.getAll();
         assertThat(foods.get(0).getPrice()).isEqualTo(90);
@@ -33,7 +33,7 @@ class ShopTest {
         createDate.set(createDate.get(Calendar.YEAR), createDate.get(Calendar.MONTH),
                 createDate.get(Calendar.DAY_OF_MONTH) - 10);
         Food food = new Food("foodWithoutD", expiryDate, createDate, 100, 0.1);
-        Store shop = new Shop();
+        Store shop = new Shop(new CalendarExpirationCalculator());
         shop.add(food);
         List<Food> foods = shop.getAll();
         assertThat(foods.get(0).getPrice()).isEqualTo(100);

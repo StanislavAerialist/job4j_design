@@ -11,7 +11,9 @@ public class ControlQuality {
     }
     public void add(Food food) {
         for (Store store : stores) {
-            store.add(food);
+            if (store.add(food)) {
+                break;
+            }
         }
     }
     public List<Store> getStores() {

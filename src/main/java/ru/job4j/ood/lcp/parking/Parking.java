@@ -20,4 +20,12 @@ public class Parking implements Park {
     public boolean toPark(Transport car) {
         return false;
     }
+
+    public List<Car> getCars() {
+        return carsParking;
+    }
+
+    public List<Truck> getTrucks() {
+        return trucksParking;
+    }
 }

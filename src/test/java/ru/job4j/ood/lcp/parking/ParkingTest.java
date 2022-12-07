@@ -34,7 +34,7 @@ class ParkingTest {
         Truck truck2 = new Truck("Man", 2);
         parking.toPark(truck1);
         parking.toPark(truck2);
-        assertThat(parking.getCars()).hasSize(1).hasSameElementsAs(List.of(truck1));
+        assertThat(parking.getCars()).hasSize(1);
         assertThat(parking.getTrucks()).hasSize(1).hasSameElementsAs(List.of(truck2));
     }
 

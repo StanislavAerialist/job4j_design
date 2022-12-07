@@ -2,13 +2,12 @@ package ru.job4j.ood.lcp.parking;
 
 import java.util.Objects;
 
-public class Car extends AbstractCar {
+public class Car implements Transport {
     private String name;
-    private int size;
+    public static final int SIZE = 1;
 
-    public Car(String name, int size) {
+    public Car(String name) {
         this.name = name;
-        this.size = size;
     }
 
     public String getName() {
@@ -20,18 +19,14 @@ public class Car extends AbstractCar {
     }
 
     public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
+        return SIZE;
     }
 
     @Override
     public String toString() {
         return "Car{"
                 + "name='" + name + '\''
-                + ", size=" + size + '}';
+                + ", size=" + SIZE + '}';
     }
 
     @Override
@@ -43,11 +38,11 @@ public class Car extends AbstractCar {
             return false;
         }
         Car car = (Car) o;
-        return size == car.size && Objects.equals(name, car.name);
+        return Objects.equals(name, car.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, size);
+        return Objects.hash(name);
     }
 }

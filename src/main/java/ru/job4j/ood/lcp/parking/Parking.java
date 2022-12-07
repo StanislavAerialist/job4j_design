@@ -1,5 +1,6 @@
 package ru.job4j.ood.lcp.parking;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Parking implements Park {
@@ -12,9 +13,11 @@ public class Parking implements Park {
     public Parking(int carCapacity, int truckCapacity) {
         this.carCapacity = carCapacity;
         this.truckCapacity = truckCapacity;
+        this.carsParking = new ArrayList<>(carCapacity);
+        this.trucksParking = new ArrayList<>(truckCapacity);
     }
     @Override
-    public boolean toPark(AbstractCar car) {
+    public boolean toPark(Transport car) {
         return false;
     }
 }

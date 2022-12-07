@@ -2,11 +2,16 @@ package ru.job4j.ood.lcp.parking;
 
 import java.util.Objects;
 
-public class Truck extends AbstractCar {
+import static ru.job4j.ood.lcp.parking.Car.SIZE;
+
+public class Truck implements Transport {
     private String name;
     private int size;
 
     public Truck(String name, int size) {
+        if (size <= SIZE) {
+            throw new IllegalArgumentException("Wrong Truck size");
+        }
         this.name = name;
         this.size = size;
     }

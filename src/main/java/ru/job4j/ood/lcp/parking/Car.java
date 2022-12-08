@@ -3,9 +3,8 @@ package ru.job4j.ood.lcp.parking;
 import java.util.Objects;
 
 public class Car implements Transport {
-    private String name;
     public static final int SIZE = 1;
-
+    private String name;
     public Car(String name) {
         this.name = name;
     }

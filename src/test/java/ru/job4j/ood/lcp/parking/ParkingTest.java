@@ -32,10 +32,10 @@ class ParkingTest {
         Parking parking = new Parking(2, 1);
         Truck truck1 = new Truck("Larry", 4);
         Truck truck2 = new Truck("Man", 2);
-        parking.toPark(truck1);
-        parking.toPark(truck2);
-        assertThat(parking.getCars()).hasSize(1);
-        assertThat(parking.getTrucks()).hasSize(1).hasSameElementsAs(List.of(truck2));
+        assertThat(parking.toPark(truck1)).isTrue();
+        assertThat(parking.toPark(truck2)).isTrue();
+        assertThat(parking.getCars()).hasSize(2);
+        assertThat(parking.getTrucks()).hasSize(1).hasSameElementsAs(List.of(truck1));
     }
 
     @Test
@@ -43,9 +43,8 @@ class ParkingTest {
         Parking parking = new Parking(2, 1);
         Truck truck1 = new Truck("Larry", 4);
         Truck truck2 = new Truck("Man", 3);
-        parking.toPark(truck1);
-        assertThatThrownBy(() -> parking.toPark(truck2))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(parking.toPark(truck1)).isTrue();
+        assertThat(parking.toPark(truck2)).isFalse();
     }
 
     @Test
@@ -53,9 +52,8 @@ class ParkingTest {
         Parking parking = new Parking(1, 1);
         Car car1 = new Car("WV");
         Car car2 = new Car("BMW");
-        parking.toPark(car1);
-        assertThatThrownBy(() -> parking.toPark(car2))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThat(parking.toPark(car1)).isTrue();
+        assertThat(parking.toPark(car2)).isFalse();
     }
 
     @Test

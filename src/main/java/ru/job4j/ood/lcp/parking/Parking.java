@@ -8,8 +8,8 @@ import static ru.job4j.ood.lcp.parking.Car.SIZE;
 public class Parking implements Park {
     private int carCapacity;
     private int truckCapacity;
-    private final List<Car> carsParking;
-    private final List<Truck> trucksParking;
+    private final List<Transport> carsParking;
+    private final List<Transport> trucksParking;
 
     public Parking(int carCapacity, int truckCapacity) {
         this.carCapacity = carCapacity;
@@ -19,32 +19,26 @@ public class Parking implements Park {
     }
     @Override
     public boolean toPark(Transport car) {
-        boolean rsl = false;
-        if (car.getSize() > SIZE) {
-            if (truckCapacity - 1 >= 0) {
-                trucksParking.add((Truck) car);
-                truckCapacity--;
-                rsl = true;
-            } else if (carCapacity - car.getSize() >= 0) {
-                for (int i = 0; i < car.getSize(); i++) {
-                    carsParking.add(new Car(car.getName()));
-                    carCapacity--;
-                }
-                rsl = true;
-            }
-        } else if (car.getSize() == SIZE && carCapacity - SIZE >= 0) {
-            carsParking.add((Car) car);
-            carCapacity--;
-            rsl = true;
+        if (car.getSize() > SIZE && truckCapacity >= 1) {
+            trucksParking.add(car);
+            truckCapacity--;
+            return true;
         }
-        return rsl;
+        if (carCapacity - car.getSize() >= 0) {
+            for (int i = 0; i < car.getSize(); i++) {
+                carsParking.add(car);
+                carCapacity--;
+            }
+            return true;
+        }
+        return false;
     }
 
-    public List<Car> getCars() {
+    public List<Transport> getCars() {
         return carsParking;
     }
 
-    public List<Truck> getTrucks() {
+    public List<Transport> getTrucks() {
         return trucksParking;
     }
 

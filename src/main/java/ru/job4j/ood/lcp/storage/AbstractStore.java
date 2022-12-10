@@ -20,4 +20,8 @@ public abstract class AbstractStore implements Store {
     }
 
     protected abstract boolean isNotExpired(Food food);
+
+    public void clear() {
+        this.store.clear();
+    }
 }

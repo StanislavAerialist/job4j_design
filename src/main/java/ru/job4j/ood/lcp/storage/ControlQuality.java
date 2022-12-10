@@ -19,4 +19,25 @@ public class ControlQuality {
     public List<Store> getStores() {
         return new ArrayList<>(stores);
     }
+
+    public void execute(List<Food> foods) {
+        List<Food> rsl = new ArrayList<>(foods);
+        for (Store store : this.stores) {
+            for (Food food : rsl) {
+                if (store.add(food)) {
+                    rsl.remove(food);
+                    break;
+                }
+            }
+        }
+    }
+
+    public void resort() {
+        List<Food> foods = new ArrayList<>();
+            for (Store store : this.stores) {
+                foods.addAll(store.getAll());
+                store.clear();
+            }
+            execute(foods);
+        }
 }

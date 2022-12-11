@@ -35,18 +35,10 @@ public class Parking implements Park {
     }
 
     public List<Transport> getCars() {
-        return carsParking;
+        return new ArrayList<>(carsParking);
     }
 
     public List<Transport> getTrucks() {
-        return trucksParking;
-    }
-
-    public static void main(String[] args) {
-        Parking parking = new Parking(2, 1);
-        parking.toPark(new Car("BMW"));
-        parking.toPark(new Car("BBJ"));
-        System.out.println(parking.getCars());
-        System.out.println(parking.getCars().size());
+        return new ArrayList<>(trucksParking);
     }
 }

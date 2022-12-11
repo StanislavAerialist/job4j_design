@@ -69,18 +69,18 @@ public class SimpleMenuTest {
         menu.add("Spider man", "Man", STUB_ACTION);
         menu.add(Menu.ROOT, "Iron man", STUB_ACTION);
         menu.add("Iron man", "Iron", STUB_ACTION);
-        menu.add("Iron man", "Man", STUB_ACTION);
+        menu.add("Iron man", "Man2", STUB_ACTION);
         menu.add(Menu.ROOT, "Batman", STUB_ACTION);
         menu.add("Batman", "Bat", STUB_ACTION);
-        menu.add("Batman", "Man", STUB_ACTION);
+        menu.add("Batman", "Man1", STUB_ACTION);
         assertThat(new Menu.MenuItemInfo("Spider man",
                 List.of("Spider", "Man"), STUB_ACTION, "1."))
                 .isEqualTo(menu.select("Spider man").get());
         assertThat(new Menu.MenuItemInfo("Batman",
-                List.of("Bat", "Man"), STUB_ACTION, "3."))
+                List.of("Bat", "Man1"), STUB_ACTION, "3."))
                 .isEqualTo(menu.select("Batman").get());
         assertThat(new Menu.MenuItemInfo("Iron man",
-                List.of("Iron", "Man"), STUB_ACTION, "2."))
+                List.of("Iron", "Man2"), STUB_ACTION, "2."))
                 .isEqualTo(menu.select("Iron man").get());
     }
 }

@@ -12,7 +12,6 @@ public class StringProcessor {
         this.stringReader = stringReader;
         this.stringWriter = stringWriter;
     }
-
     public void printString() {
         stringWriter.write(stringReader.toString());
     }

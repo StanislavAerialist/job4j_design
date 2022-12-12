@@ -10,7 +10,6 @@ public class TreePrint implements MenuPrinter {
 
     @Override
     public void print(Menu menu) {
-        Iterator<Menu.MenuItemInfo> iterator = menu.iterator();
         for (Menu.MenuItemInfo item : menu) {
             int count = item.getNumber().split("\\.").length - 1;
             System.out.println(DEC.repeat(count)

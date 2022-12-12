@@ -1,5 +1,6 @@
 package ru.job4j.ood.dip;
 
+import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
@@ -12,7 +13,7 @@ public class StringProcessor {
         this.stringReader = stringReader;
         this.stringWriter = stringWriter;
     }
-    public void printString() {
-        stringWriter.write(stringReader.toString());
+    public void printString() throws IOException {
+        stringWriter.write(stringReader.read());
     }
 }
